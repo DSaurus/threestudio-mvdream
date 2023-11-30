@@ -3,13 +3,12 @@ from dataclasses import dataclass, field
 from typing import List
 
 import numpy as np
+import threestudio
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from mvdream.camera_utils import convert_opengl_to_blender, normalize_camera
 from mvdream.model_zoo import build_model
-
-import threestudio
 from threestudio.models.prompt_processors.base import PromptProcessorOutput
 from threestudio.utils.base import BaseModule
 from threestudio.utils.misc import C, cleanup, parse_version
