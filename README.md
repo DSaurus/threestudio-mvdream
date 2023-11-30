@@ -1,5 +1,5 @@
 # threestudio-mvdream
-The MVDream extension for ThreeStudio. The original implementation can be found at https://github.com/bytedance/MVDream-threestudio. We thank them for their contribution to the 3D generation community.
+The MVDream extension for ThreeStudio. The original implementation can be found at https://github.com/bytedance/MVDream-threestudio. We thank them for their contribution to the 3D generation community. To use it, please install [ThreeStudio](https://github.com/threestudio-project/threestudio) first and then install this extension in ThreeStudio `custom` directory.
 
 # Installation
 ```
