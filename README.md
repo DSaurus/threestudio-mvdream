@@ -1,7 +1,7 @@
 # threestudio-mvdream
 ![mvdream](https://github.com/DSaurus/threestudio-mvdream/assets/24589363/b21e2a80-7ea9-4add-890e-0395b91aa5af)
 
-The MVDream extension for ThreeStudio. The original implementation can be found at https://github.com/bytedance/MVDream-threestudio. We thank them for their contribution to the 3D generation community. To use it, please install [ThreeStudio](https://github.com/threestudio-project/threestudio) first and then install this extension in ThreeStudio `custom` directory.
+The MVDream extension for threestudio. The original implementation can be found at https://github.com/bytedance/MVDream-threestudio. We thank them for their contribution to the 3D generation community. To use it, please install [threestudio](https://github.com/threestudio-project/threestudio) first and then install this extension in threestudio `custom` directory.
 
 # Installation
 ```
