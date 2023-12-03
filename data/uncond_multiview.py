@@ -252,7 +252,7 @@ class RandomMultiviewCameraIterableDataset(RandomCameraIterableDataset):
             "camera_distances": camera_distances,
             "height": self.height,
             "width": self.width,
-            "fovy": fovy_deg,
+            "fovy": fovy,
         }
 
 
