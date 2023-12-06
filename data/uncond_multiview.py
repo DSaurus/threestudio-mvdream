@@ -33,6 +33,8 @@ class RandomMultiviewCameraDataModuleConfig(RandomCameraDataModuleConfig):
     n_view: int = 1
     zoom_range: Tuple[float, float] = (1.0, 1.0)
 
+    rays_d_normalize: bool = True
+
 
 class RandomMultiviewCameraIterableDataset(RandomCameraIterableDataset):
     def __init__(self, *args, **kwargs):
@@ -233,7 +235,9 @@ class RandomMultiviewCameraIterableDataset(RandomCameraIterableDataset):
         )
 
         # Importance note: the returned rays_d MUST be normalized!
-        rays_o, rays_d = get_rays(directions, c2w, keepdim=True)
+        rays_o, rays_d = get_rays(
+            directions, c2w, keepdim=True, normalize=self.cfg.rays_d_normalize
+        )
 
         proj_mtx: Float[Tensor, "B 4 4"] = get_projection_matrix(
             fovy, self.width / self.height, 0.1, 1000.0
