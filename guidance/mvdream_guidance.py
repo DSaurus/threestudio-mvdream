@@ -10,15 +10,15 @@ import torch.nn.functional as F
 from mvdream.camera_utils import convert_opengl_to_blender, normalize_camera
 from mvdream.model_zoo import build_model
 from threestudio.models.prompt_processors.base import PromptProcessorOutput
-from threestudio.utils.base import BaseModule
+from threestudio.utils.base import BaseObject
 from threestudio.utils.misc import C, cleanup, parse_version
 from threestudio.utils.typing import *
 
 
 @threestudio.register("mvdream-multiview-diffusion-guidance")
-class MultiviewDiffusionGuidance(BaseModule):
+class MultiviewDiffusionGuidance(BaseObject):
     @dataclass
-    class Config(BaseModule.Config):
+    class Config(BaseObject.Config):
         model_name: str = (
             "sd-v2.1-base-4view"  # check mvdream.model_zoo.PRETRAINED_MODELS
         )
@@ -47,7 +47,9 @@ class MultiviewDiffusionGuidance(BaseModule):
     def configure(self) -> None:
         threestudio.info(f"Loading Multiview Diffusion ...")
 
-        self.model = build_model(self.cfg.model_name, ckpt_path=self.cfg.ckpt_path)
+        self.model = build_model(self.cfg.model_name, ckpt_path=self.cfg.ckpt_path).to(
+            self.device
+        )
         for p in self.model.parameters():
             p.requires_grad_(False)
 
@@ -57,8 +59,6 @@ class MultiviewDiffusionGuidance(BaseModule):
         self.min_step = int(self.num_train_timesteps * min_step_percent)
         self.max_step = int(self.num_train_timesteps * max_step_percent)
         self.grad_clip_val: Optional[float] = None
-
-        self.to(self.device)
 
         threestudio.info(f"Loaded Multiview Diffusion!")
 
@@ -87,7 +87,7 @@ class MultiviewDiffusionGuidance(BaseModule):
         )
         return latents  # [B, 4, 32, 32] Latent space image
 
-    def forward(
+    def __call__(
         self,
         rgb: Float[Tensor, "B H W C"],
         prompt_utils: PromptProcessorOutput,

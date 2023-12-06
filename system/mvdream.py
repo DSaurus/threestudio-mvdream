@@ -27,22 +27,6 @@ class MVDreamSystem(BaseLift3DSystem):
         )
         self.prompt_utils = self.prompt_processor()
 
-    def on_load_checkpoint(self, checkpoint):
-        for k in list(checkpoint["state_dict"].keys()):
-            if k.startswith("guidance."):
-                return
-        guidance_state_dict = {
-            "guidance." + k: v for (k, v) in self.guidance.state_dict().items()
-        }
-        checkpoint["state_dict"] = {**checkpoint["state_dict"], **guidance_state_dict}
-        return
-
-    def on_save_checkpoint(self, checkpoint):
-        for k in list(checkpoint["state_dict"].keys()):
-            if k.startswith("guidance."):
-                checkpoint["state_dict"].pop(k)
-        return
-
     def forward(self, batch: Dict[str, Any]) -> Dict[str, Any]:
         return self.renderer(**batch)
 
