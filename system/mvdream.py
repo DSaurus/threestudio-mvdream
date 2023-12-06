@@ -21,7 +21,6 @@ class MVDreamSystem(BaseLift3DSystem):
         # set up geometry, material, background, renderer
         super().configure()
         self.guidance = threestudio.find(self.cfg.guidance_type)(self.cfg.guidance)
-        self.guidance.requires_grad_(False)
         self.prompt_processor = threestudio.find(self.cfg.prompt_processor_type)(
             self.cfg.prompt_processor
         )
