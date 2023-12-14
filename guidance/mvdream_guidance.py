@@ -125,7 +125,7 @@ class MultiviewDiffusionGuidance(BaseObject):
                     - 1
                 )
             else:
-                # interp to 512x512 to be fed into vae.
+                # interp to 256x256 to be fed into vae.
                 pred_rgb = F.interpolate(
                     rgb_BCHW,
                     (self.cfg.image_size, self.cfg.image_size),
