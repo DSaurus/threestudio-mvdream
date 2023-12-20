@@ -8,6 +8,14 @@ The MVDream extension for threestudio. The original implementation can be found 
 cd custom
 git clone https://github.com/DSaurus/threestudio-mvdream.git
 cd threestudio-mvdream
+
+# First install xformers (https://github.com/facebookresearch/xformers#installing-xformers)
+# cuda 11.8 version
+pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu118
+# cuda 12.1 version
+pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu121
+
+# Then install other dependencies
 pip install -r requirements.txt
 ```
 
