@@ -13,7 +13,7 @@ cd threestudio-mvdream
 # cuda 11.8 version
 pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu118
 # cuda 12.1 version
-pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu121
+# pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu121
 
 # Then install other dependencies
 pip install -r requirements.txt
